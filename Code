@@ -1,0 +1,24 @@
+import re
+video_url=input("Enter the video link:")
+def extract_channel_id(video_url):
+    # Regular expression pattern to match YouTube video URLs
+    pattern = r'(https?://)?(www\.)?(youtube\.com|youtu\.be)/(watch\?v=|embed/|v/|watch\?.*?&v=|watch\?.*?v=)?([^&?]+)'
+    
+    # Search for the pattern in the URL
+    match = re.match(pattern, video_url)
+    
+    if match:
+        # The fifth group in the match object contains the Channel ID
+        channel_id = match.group(5)
+        return channel_id
+    else:
+        return None
+
+# Example usage:
+video_url = 'https://www.youtube.com/watch?v=xx17B4ep6a0'
+channel_id = extract_channel_id(video_url)
+
+if channel_id:
+    print(f'Channel ID: {channel_id}')
+else:
+    print('Channel ID not found in the URL.')
